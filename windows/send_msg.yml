@@ -16,4 +16,4 @@
     win_ping:
 
   - name: send msg
-    win_shell: msg.exe /server:vc65.labvmware.local * "{{ Message }}"
+    win_shell: msg.exe * "{{ Message }}"

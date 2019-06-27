@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 #
 # Simple script to generate a basic bind configuration for home/lab use
 #
@@ -98,13 +98,23 @@ cat > db.${DOMAIN} <<- EOF
 ;
 dns		IN	A	${OWNIP}
 ntp		IN	CNAME	dns.${DOMAIN}.
-esxi01		IN	A	${NET}.11
-esxi02		IN	A	${NET}.12
-esxi03		IN	A	${NET}.13
-esxi04		IN	A	${NET}.14
+vcenter		IN	A	${NET}.49
+esx1		IN	A	${NET}.50
+esx2		IN	A	${NET}.51
+Rundeck		IN	A	${NET}.143
+Centreon		IN	A	${NET}.126
+CentreonTest		IN	A	${NET}.160
+Client-Linux		IN	A	${NET}.100
+Corosync		IN	A	${NET}.147
+DNS		IN	A	${NET}.116
+ElastikSearch		IN	A	${NET}.113
+Client-W10		IN	A	${NET}.99
+OpenFiler		IN	A	${NET}.105
+Pfsense		IN	A	${NET}.1
+Postfix		IN	A	${NET}.117
+Serveur-AD		IN	A	${NET}.115
 ;
-vcenter		IN	A	${NET}.20
-vma		IN	A	${NET}.21
+
 EOF
 echo "Populated forward zone file db.${DOMAIN} for ${DOMAIN}"
 
@@ -124,13 +134,24 @@ cat > db.${REVADDR}in-addr.arpa <<- EOF
 ;
 ${OWNH}	IN	PTR	dns.${DOMAIN}.
 ;
-11	IN	PTR	esxi01.${DOMAIN}.
-12	IN	PTR	esxi02.${DOMAIN}.
-13	IN	PTR	esxi03.${DOMAIN}.
-14	IN	PTR	esxi04.${DOMAIN}.
+50	IN	PTR	esx1.${DOMAIN}.
+51	IN	PTR	esx2.${DOMAIN}.
+49	IN	PTR	vcenter.${DOMAIN}.
+143	IN	PTR	Rundeck.${DOMAIN}.
+144	IN	PTR	DebianTest.${DOMAIN}.
+126	IN	PTR	Centreon.${DOMAIN}.
+160	IN	PTR	CentreonTest.${DOMAIN}.
+100	IN	PTR	Client-Linux.${DOMAIN}.
+147	IN	PTR	Corosync.${DOMAIN}.
+116	IN	PTR	DNS.${DOMAIN}.
+113	IN	PTR	ElastikSearch.${DOMAIN}.
+99	IN	PTR	Client-W10.${DOMAIN}.
+105	IN	PTR	OpenFiler.${DOMAIN}.
+1	IN	PTR	Pfsense.${DOMAIN}.
+117	IN	PTR	Postfix.${DOMAIN}.
+115	IN	PTR	Serveur-AD.${DOMAIN}.
 ;
-20	IN	PTR	vcenter.${DOMAIN}.
-21	IN	PTR	vma.${DOMAIN}.
+
 EOF
 echo "Populated reverse zone file db.${REVADDR}in-addr.arpa for ${NET}"
 

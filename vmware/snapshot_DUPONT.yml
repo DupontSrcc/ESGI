@@ -1,0 +1,17 @@
+---
+- name : Create Snapshot
+  hosts: localhost
+
+  tasks:
+  - name: Create snapshot
+    vmware_guest_snapshot:
+     hostname: 192.168.100.50
+     username: root
+     password: vmware
+     datacenter: Datacenter
+     folder: /Datacenter/vm/
+     name: durif.clement.1
+     state: present
+     snapshot_name: snap1
+     description: snap1_description
+     validate_certs: false

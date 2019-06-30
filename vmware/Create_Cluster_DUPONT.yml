@@ -1,0 +1,27 @@
+
+---
+- name : Create Cluster
+  hosts: localhost
+
+  tasks:
+  - name: Get playbook variables
+    include_vars:
+      file: variable.yml
+
+  - name: Create Cluster
+    local_action:
+      module: vmware_cluster
+      hostname: "{{ 192.168.100.49 }}"
+      username: "{{ administrator@dupont.lan }}"
+      password: "{{ Esgi1234! }}"
+      datacenter_name: "{{ nom }}.{{ prenom }}"
+      cluster_name: "{{ nom }}.{{ prenom }}"
+      enable_ha: yes
+      enable_drs: yes
+      enable_vsan: no
+      validate_certs: no
+#    delegate_to: localhost
+#    register: vmfacts
+
+
+

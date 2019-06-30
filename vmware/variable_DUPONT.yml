@@ -1,0 +1,29 @@
+#YAML variable
+
+nom: durif
+prenom: clement
+  
+#variable VCenter
+hostname_vct: 192.168.100.49
+username_vct: root
+mdp_vct: vmware
+
+#variable Datacenter
+datacenter_name: vDc_Ansible
+
+#variable Cluster
+cluster_name: C_Ansible
+
+
+#variable ESX
+esxi_host: 192.168.100.50
+username_esx: root
+mdp_esx: Esgi1234
+esx_datacenter: datacenter
+
+#variable VM
+name_vm: name_vm
+osid: osid
+datastore_vm: datastore1
+folder: /vm
+

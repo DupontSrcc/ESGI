@@ -1,0 +1,38 @@
+---
+- name : Create VM
+  hosts: localhost
+
+  tasks:
+  - name: Get playbook variables
+    include_vars:
+      file: variable.yml
+  - name: Create a virtual machine
+    vmware_guest:
+      hostname: "192.168.100.49"
+      username: "root"
+      password: "vmware"
+      validate_certs: False
+      datacenter: Datacenter
+      folder: /Datacenter/vm/
+      name: "{{ nom }}.{{ prenom }}.1"
+      state: poweredoff
+      guest_id: centos64Guest
+      # This is hostname of particular ESXi server on which user wants VM to be deployed
+      esxi_hostname: 192.168.100.50
+      disk:
+      - size_gb: 10
+        type: thin
+        datastore: datastore1_esx1
+      hardware:
+        memory_mb: 512
+        num_cpus: 1
+        scsi: paravirtual
+      networks:
+      - name: VM Network
+        mac: aa:bb:dd:aa:00:14
+        ip: 192.168.100.189
+        netmask: 255.255.255.0
+        device_type: vmxnet3
+      wait_for_ip_address: false
+    delegate_to: localhost
+    register: deploy_vm
